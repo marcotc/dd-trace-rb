@@ -52,6 +52,13 @@ jobs:
             var draftText = "> Please categorize the following changes:\n\n"
             for (let pull of pullRequests) {
               if (pull.merged_at && pull.milestone && pull.milestone.number == ${{steps.milestone.outputs.result}}) {
+                console.log("====")
+                pull.labels.every(label => console.log(label.name))
+                console.log("====")
+                pull.labels.every(label => console.log(typeof label.name))
+                console.log("====")
+
+
                 // Skip `dev/*` tags, as these represent internal changes
                 if (pull.labels.every(label => label.name.startWith("dev/"))) {
                   continue
