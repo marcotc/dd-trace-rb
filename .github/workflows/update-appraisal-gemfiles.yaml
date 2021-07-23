@@ -1,0 +1,25 @@
+name: Update appraisal gemfiles
+on:
+  schedule:
+    - cron: '*/2 * * * *'
+#    - cron: '0 0 * * 1' # Once a week, on Monday 00:00
+jobs:
+  update_appraisal_gemfiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@77ca66ce2792fb05b8b204a203328e12593a64f3 # v1.72.1
+        with:
+          ruby-version: 3.0.1
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+#      - run: bundle exec rake update_appraisal_gemfiles
+      - run: echo "; gem 'rack-brotli'" >> Gemfile
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@9825ae65b1cb54b543b938503728b432a0176d29 # v3.10.0
+        with:
+          commit-message: Update appraisal gemfiles
+          title: Update appraisal gemfiles
+          body: >-
+            Updates `gemfiles/*` files to account for changes to `Gemfile` and `Appraisals`.
+            This improves CI caching and allows for more predictable dependency resolution.
+          branch: action-bot/update_appraisal_gemfiles
