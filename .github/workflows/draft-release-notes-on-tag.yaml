@@ -53,7 +53,7 @@ jobs:
             for (let pull of pullRequests) {
               if (pull.merged_at && pull.milestone && pull.milestone.number == ${{steps.milestone.outputs.result}}) {
                 // Skip `dev/*` tags, as these represent internal changes
-                if (pull.labels.every(label => label.name.startWith("dev/")) {
+                if (pull.labels.every(label => label.name.startWith("dev/"))) {
                   continue
                 }
 
