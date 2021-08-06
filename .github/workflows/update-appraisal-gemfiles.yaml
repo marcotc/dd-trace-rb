@@ -1,8 +1,8 @@
 name: Update appraisal gemfiles
 on:
   schedule:
-    - cron: '*/2 * * * *'
-#    - cron: '0 0 * * 1' # Once a week, on Monday 00:00
+#    - cron: '*/2 * * * *'
+    - cron: '0 0 * * 1' # Once a week, on Monday 00:00
 jobs:
   update_appraisal_gemfiles:
     runs-on: ubuntu-latest
