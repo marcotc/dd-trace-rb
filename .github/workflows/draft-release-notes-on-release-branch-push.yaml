@@ -4,7 +4,8 @@ on:
 
 jobs:
   draft_release_notes:
-    if: github.event.ref_type == 'branch' && github.event.ref.startsWith("bump_to_version_")
+    if: |
+      github.event.ref_type == 'branch' && github.event.ref.startsWith("bump_to_version_")
     runs-on: ubuntu-latest
     steps:
       - name: Get release version
