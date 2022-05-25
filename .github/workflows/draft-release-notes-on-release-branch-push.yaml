@@ -15,7 +15,7 @@ jobs:
           script: |
             # github.event.ref.substring('bump_to_version_'.length);
             # '${{ github.event.ref }}'
-            return github.event.ref;
+            return '${{ github.event.ref }}';
       - name: Get milestone for tag
         id: milestone
         uses: actions/github-script@47f7cf65b5ced0830a325f705cad64f2f58dddf7 # 3.1.0
