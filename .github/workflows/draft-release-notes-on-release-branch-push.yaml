@@ -13,7 +13,6 @@ jobs:
         with:
           result-encoding: string
           script: |
-            # github.event.ref.substring('bump_to_version_'.length);
             return '${{ github.event.ref }}';
       - name: Get milestone for tag
         id: milestone
