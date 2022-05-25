@@ -4,8 +4,7 @@ on:
 
 jobs:
   draft_release_notes:
-    if: |
-      github.event.ref_type == 'branch' && github.event.ref.startsWith("bump_to_version_")
+    if: github.event.ref_type == 'branch' && startsWith(github.event.ref, 'bump_to_version_')
     runs-on: ubuntu-latest
     steps:
       - name: Get release version
@@ -14,7 +13,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            return github.event.ref.substring("bump_to_version_".length);
+            return github.event.ref.substring('bump_to_version_'.length);
       - name: Get milestone for tag
         id: milestone
         uses: actions/github-script@47f7cf65b5ced0830a325f705cad64f2f58dddf7 # 3.1.0
